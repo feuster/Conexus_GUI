@@ -1,0 +1,75 @@
+object PINForm: TPINForm
+  Left = 885
+  Height = 102
+  Top = 376
+  Width = 263
+  ActiveControl = PINEdit
+  AlphaBlend = True
+  BorderIcons = []
+  BorderStyle = bsNone
+  BorderWidth = 1
+  Caption = 'PIN'
+  ClientHeight = 102
+  ClientWidth = 263
+  FormStyle = fsStayOnTop
+  PopupMode = pmExplicit
+  Position = poMainFormCenter
+  ShowInTaskBar = stNever
+  LCLVersion = '1.8.2.0'
+  object Panel1: TPanel
+    Left = 1
+    Height = 100
+    Top = 1
+    Width = 261
+    Align = alClient
+    BevelInner = bvSpace
+    BorderWidth = 1
+    ClientHeight = 100
+    ClientWidth = 261
+    TabOrder = 0
+    object OKButton: TButton
+      Left = 92
+      Height = 25
+      Top = 68
+      Width = 75
+      Align = alCustom
+      Caption = 'OK'
+      OnClick = OKButtonClick
+      TabOrder = 0
+    end
+    object PINEdit: TMaskEdit
+      Left = 3
+      Height = 31
+      Top = 33
+      Width = 255
+      Align = alTop
+      Alignment = taCenter
+      CharCase = ecNormal
+      Font.Height = 24
+      Font.Pitch = fpFixed
+      MaxLength = 4
+      ParentFont = False
+      TabOrder = 1
+      OnClick = PINEditClick
+      OnEnter = PINEditEnter
+      OnKeyPress = PINEditKeyPress
+      EditMask = '0000;0;*'
+      SpaceChar = '*'
+    end
+    object Label1: TLabel
+      Left = 3
+      Height = 30
+      Top = 3
+      Width = 255
+      Align = alTop
+      Alignment = taCenter
+      AutoSize = False
+      Caption = 'Bitte PIN eingeben:'
+      Font.Height = 30
+      Layout = tlCenter
+      ParentColor = False
+      ParentFont = False
+      OptimalFill = True
+    end
+  end
+end
