@@ -6,8 +6,8 @@ unit Main;
 |  _______________________________________________________  |
 | |                                                       | |
 | |    Remote Tool for Frontier Silicon based devices     | |
-| | (c) 2018 Alexander Feuster (alexander.feuster@web.de) | |
-| |             http://www.github.com/feuster             | |
+| | (c) 2019 Alexander Feuster (alexander.feuster@web.de) | |
+| |            https://www.github.com/feuster             | |
 | |_______________________________________________________| |
 |___________________________________________________________}
 
@@ -331,6 +331,7 @@ var
 
 const
   PINs:           array [0..3] of String = ('1234', '1111', '0000', '1337');
+  STR_Date:       String = {$I %DATE%};
 
   { Simple Encryption Routine:
     Number = Index CryptKey for e.g. Index "3" with CryptKey1 = "1"
@@ -2085,6 +2086,7 @@ end;
 
 procedure TMainForm.FormCloseQuery(Sender: TObject; var CanClose: boolean);
 begin
+  try
   //Delete active session ID
   if fsapi_SessionID<>'' then
     begin
@@ -2101,7 +2103,9 @@ begin
     DeleteFile(ExtractFilePath(ParamStr(0))+'Log.txt');
   LogMemo.Lines.SaveToFile(ExtractFilePath(ParamStr(0))+'Log.txt');
   {$ENDIF}
+  finally
   CanClose:=true;
+  end;
 end;
 
 procedure TMainForm.Device_NetworkStatus;
@@ -2941,7 +2945,7 @@ begin
     begin
       MainForm.BringToFront;
       Lock_Controls;
-      SplashScreenForm.SplashScreenText.Caption:=Application.Title+#13#10+'(c) 2018 Alexander Feuster';
+      SplashScreenForm.SplashScreenText.Caption:=Application.Title+#13#10+'© '+STR_Date[1..4]+' Alexander Feuster'+#13#10+'https:/github.com/feuster';
       SplashScreenForm.Status.SimpleText:='Suche Geräte...';
       SplashScreenForm.Show;
       SplashScreenForm.BringToFront;
